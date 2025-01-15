@@ -156,21 +156,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           // Attempt to get a 'bounded-floor' reference space, which will align
           // the user's physical floor with Y=0 and provide boundaries that
           // indicate where the user can safely walk.
-          session.requestReferenceSpace('bounded-floor').then((refSpace) => {
-            onRefSpaceCreated(refSpace);
+          // session.requestReferenceSpace('bounded-floor').then((refSpace) => {
+          //   onRefSpaceCreated(refSpace);
 
-            if (!boundsRenderer) {
-              boundsRenderer = new BoundsRenderer(refSpace);
-              scene.addNode(boundsRenderer);
-            } else {
-              boundsRenderer.boundedRefSpace = refSpace;
-            }
+          //   if (!boundsRenderer) {
+          //     boundsRenderer = new BoundsRenderer(refSpace);
+          //     scene.addNode(boundsRenderer);
+          //   } else {
+          //     boundsRenderer.boundedRefSpace = refSpace;
+          //   }
 
-            refSpace.onreset = (evt) => {
-              boundsRenderer.boundedRefSpace = evt.referenceSpace;
-            }
-            console.log('dongkun/bounded-floor set');
-          }).catch(() => {
+          //   refSpace.onreset = (evt) => {
+          //     boundsRenderer.boundedRefSpace = evt.referenceSpace;
+          //   }
+          //   console.log('dongkun/bounded-floor set');
+
+          // }).catch(() => {
             // If a bounded reference space isn't supported, fall back to a
             // local-floor reference space. This still provides a floor-relative
             // space and will always be supported for immersive sessions. It
@@ -182,7 +183,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             // renders in approximately the right place.
             console.log('dongkun/Falling back to LOCAL_FLOOR reference space');
             session.requestReferenceSpace('LOCAL_FLOOR').then(onRefSpaceCreated);
-          });
+          
         } else {
           console.log('dongkun/viewer set');
           session.requestReferenceSpace('viewer').then(onRefSpaceCreated);
