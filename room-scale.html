@@ -96,7 +96,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             // reference space (which will be available even on 3DoF device)
             // but can optionally make use of bounded-floor reference spaces
             // when available.
-            requiredFeatures: ['local-floor'],
+            requiredFeatures: ['local'],
             optionalFeatures: ['bounded-floor']
         }).then((session) => {
           xrButton.setSession(session);
@@ -182,7 +182,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             // is translated up by a static height so that the scene still
             // renders in approximately the right place.
             console.log('dongkun/Falling back to LOCAL_FLOOR reference space');
-            session.requestReferenceSpace('LOCAL-FLOOR').then(onRefSpaceCreated);
+            session.requestReferenceSpace('local').then(onRefSpaceCreated);
           
         } else {
           console.log('dongkun/viewer set');
