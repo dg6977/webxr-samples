@@ -1014,12 +1014,13 @@ const PRIVATE$3 = Symbol('@@webxr-polyfill/XRReferenceSpace');
 const XRReferenceSpaceTypes = [
   'viewer',
   'local',
+  'local_floor',
   'local-floor',
   'bounded-floor',
   'unbounded'
 ];
 function isFloor(type) {
-  return type === 'bounded-floor' || type === 'local-floor';
+  return type === 'bounded-floor' || type === 'local-floor' || type === 'local_floor';
 }
 class XRReferenceSpace extends XRSpace {
   constructor(type, transform = null) {
@@ -5607,6 +5608,7 @@ class WebVRDevice extends XRDevice {
       case 'viewer': return true;
       case 'local': return true;
       case 'local-floor': return true;
+      case 'local_floor' : return true;
       case 'bounded': return false;
       case 'unbounded': return false;
       default: return false;
@@ -5773,7 +5775,7 @@ class WebVRDevice extends XRDevice {
     return null;
   }
   async requestFrameOfReferenceTransform(type, options) {
-    if ((type === 'local-floor' || type === 'bounded-floor') &&
+    if ((type === 'local-floor' || type === 'local_floor' || type === 'bounded-floor') &&
         this.display.stageParameters &&
         this.display.stageParameters.sittingToStandingTransform) {
       return this.display.stageParameters.sittingToStandingTransform;
