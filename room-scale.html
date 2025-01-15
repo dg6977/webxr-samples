@@ -96,7 +96,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             // reference space (which will be available even on 3DoF device)
             // but can optionally make use of bounded-floor reference spaces
             // when available.
-            requiredFeatures: ['LOCAL-FLOOR'],
+            requiredFeatures: ['local-floor'],
             optionalFeatures: ['bounded-floor']
         }).then((session) => {
           xrButton.setSession(session);
